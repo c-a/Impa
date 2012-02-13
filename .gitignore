@@ -1,7 +1,4 @@
 *.metadata
-*.classpath
-*.project
-*.settings
 
 *bin/
 *gen/
