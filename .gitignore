@@ -2,3 +2,6 @@
 
 *bin/
 *gen/
+
+*.o
+*anjuta*
