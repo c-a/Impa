@@ -17,8 +17,11 @@ public class Main {
 				break;
 			}
 			
-			// Empty line
+			// Remove trailing whitespace from line
 			line = line.replaceAll("\\s+$", "");
+			
+			// Empty line, output words in buffer as one line and
+			// output one empty line.
 			if (line.length() == 0) {
 				if (buf.length() > 0) {
 					System.out.println(buf.toString());
