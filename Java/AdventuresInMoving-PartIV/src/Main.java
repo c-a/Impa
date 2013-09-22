@@ -79,6 +79,7 @@ public class Main {
 			return cost;
 		}
 	}
+	
 	public Main(BufferedReader in) throws IOException {
 		int N = Integer.parseInt(in.readLine());
 		in.readLine();
