@@ -35,6 +35,7 @@ public class Main {
 			}
 		}
 	}
+
 	public static void main(String[] args) throws Exception {
 		InputStreamReader isr = new InputStreamReader(System.in);
 		BufferedReader in = new BufferedReader(isr);
