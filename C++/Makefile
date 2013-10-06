@@ -11,7 +11,7 @@ INCFLAGS =
 LDFLAGS = -Wl,-rpath,/usr/local/lib
 LIBS = 
 
-all: uva-10008 uva-400 uva-481 uva-583 uva-484 uva-514 uva-489 uva-10036 uva-10074
+all: uva-10008 uva-400 uva-481 uva-583 uva-484 uva-514 uva-489 uva-10036 uva-10074 uva-11792
 
 uva-10008: uva-10008.o
 	$(CC) -o uva-10008 uva-10008.o $(LDFLAGS) $(LIBS)
@@ -39,6 +39,9 @@ uva-10036: uva-10036.o
 
 uva-10074: uva-10074.o
 	$(CPP) -o uva-10074 uva-10074.o $(LDFLAGS) $(LIBS)
+
+uva-11792: uva-11792.o
+	$(CPP) -o uva-11792 uva-11792.o $(LDFLAGS) $(LIBS)
 
 .SUFFIXES:
 .SUFFIXES:	.c .cc .C .cpp .o
