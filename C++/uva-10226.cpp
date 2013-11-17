@@ -15,6 +15,8 @@ main(void)
     getline(std::cin, line);
     getline(std::cin, line);
     for (int c = 0; c < cases; c++) {
+        if (c > 0)
+            printf("\n");
         trees.clear();
         int nTrees = 0;
         while (true) {
