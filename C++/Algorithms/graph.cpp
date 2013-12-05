@@ -32,6 +32,7 @@ public:
     return adj_[n];
   }
 
+private:
   std::vector< std::vector<Edge> > adj_;
 };
 
@@ -44,11 +45,11 @@ struct Elem
   Elem(const T& c, int n) : cost(c), node(n) {}
 
   bool operator>(const Elem<T>& lhs) const {
-    return this->cost > lhs.cost;
+    return cost > lhs.cost;
   }
 
   bool operator<(const Elem<T>& lhs) const {
-    return this->cost < lhs.cost;
+    return cost < lhs.cost;
   }
 
 };
@@ -71,8 +72,8 @@ private:
 
 public:
 
-  ShortestPath(const Graph<T>& G, int start): G_(G), start_(start), D_(G.N()) {
-    compute();
+  ShortestPath(const Graph<T>& G, int start): start_(start), D_(G.N()) {
+    compute(G);
   }
 
   std::list<Edge> get_path(int goal) {
@@ -88,11 +89,10 @@ public:
   }
 
 private:
-  Graph<T> G_;
   int start_;
   std::vector< NodeData<T> > D_;
 
-  void compute() {
+  void compute(const Graph<T>& G) {
     typedef typename std::vector<Edge> vge;
 
     std::priority_queue< Elem<T>, std::vector< Elem<T> >, std::greater< Elem<T> > > Q;
@@ -106,8 +106,8 @@ private:
       if (D_[cur.node].visited)
         continue;
 
-      for (typename vge::const_iterator i = G_.adj(cur.node).begin();
-           i != G_.adj(cur.node).end(); ++i) {
+      for (typename vge::const_iterator i = G.adj(cur.node).begin();
+           i != G.adj(cur.node).end(); ++i) {
         const Edge& e = *i;
 
         if (D_[e.to].visited)
