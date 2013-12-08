@@ -183,6 +183,105 @@ private:
   }
 };
 
+template<typename T>
+class BellmanFord
+{
+private:
+  typedef typename Graph<T>::Edge Edge;
+
+  struct NodeData
+  {
+    bool found;
+    T cost;
+    const Edge* edgeTo;
+
+    NodeData() : found(false), edgeTo(0) {}
+  };
+
+public:
+
+  BellmanFord(const Graph<T>& G, int start):
+    start_(start),
+    D_(G.N()),
+    has_negative_cycle_(false)
+  {
+    compute(G);
+  }
+
+  std::list<Edge> get_path(int goal) {
+    std::list<Edge> path;
+    for (int cur = goal; D_[cur].edgeTo != 0; cur = D_[cur].edgeTo->from)
+      path.push_front(*D_[cur].edgeTo);
+
+    return path;
+  }
+
+  bool has_path(int goal) {
+    return D_[goal].found;
+  }
+
+  T get_cost(int goal) {
+    return D_[goal].cost;
+  }
+
+  bool has_negative_cycle() {
+    return has_negative_cycle_;
+  }
+
+private:
+  typedef typename std::vector<Edge> vge;
+
+  int start_;
+  std::vector<NodeData> D_;
+  bool has_negative_cycle_;
+
+  void compute(const Graph<T>& G) {
+
+    D_[start_].cost = 0;
+    D_[start_].found = true;
+
+    for (int pass = 0; pass < G.N() - 1; pass++) {
+      for (int node = 0; node < G.N(); node++)
+        relax(G, node);
+    }
+
+    // Check if we have a negative cycle
+    for (int node = 0; node < G.N(); node++) {
+      NodeData& nd = D_[node];
+      if (!nd.found)
+        continue;
+
+      for (typename vge::const_iterator i = G.adj(node).begin(); i != G.adj(node).end(); ++i) {
+        const Edge& e = *i;
+
+        if (nd.cost + e.cost < D_[e.to].cost) {
+          has_negative_cycle_ = true;
+          return;
+        }
+      }
+    }
+  }
+
+  void relax(const Graph<T>& G, int node) {
+
+    NodeData& nd = D_[node];
+
+    if (!nd.found)
+      return;
+
+    for (typename vge::const_iterator i = G.adj(node).begin(); i != G.adj(node).end(); ++i) {
+      const Edge& e = *i;
+
+      if (!D_[e.to].found ||
+          nd.cost + e.cost < D_[e.to].cost) {
+        D_[e.to].cost = D_[node].cost + e.cost;
+        D_[e.to].found = true;
+        D_[e.to].edgeTo = &e;
+      }
+    }
+  }
+};
+
 int main() {
   Graph<int> G(4);
 
