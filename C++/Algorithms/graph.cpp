@@ -84,8 +84,7 @@ private:
   void dfs(const Graph<T>& G, int u) {
     visited[u] = true;
 
-    for (typename std::vector<typename Graph<T>::Edge>::const_iterator i = G.adj(u).begin();
-         i != G.adj(u).end(); ++i) {
+    for (auto i = G.adj(u).begin(); i != G.adj(u).end(); ++i) {
       const typename Graph<T>::Edge& e  = *i;
       if (visited[e.to])
         continue;
@@ -151,8 +150,6 @@ private:
   std::vector<NodeData> D_;
 
   void compute(const Graph<T>& G) {
-    typedef typename std::vector<Edge> vge;
-
     std::priority_queue< Elem, std::vector<Elem>, std::greater<Elem> > Q;
 
     Q.push(Elem(T(), start_));
@@ -163,8 +160,7 @@ private:
       if (D_[cur.node].visited)
         continue;
 
-      for (typename vge::const_iterator i = G.adj(cur.node).begin();
-           i != G.adj(cur.node).end(); ++i) {
+      for (auto i = G.adj(cur.node).begin(); i != G.adj(cur.node).end(); ++i) {
         const Edge& e = *i;
 
         if (D_[e.to].visited)
@@ -229,8 +225,6 @@ public:
   }
 
 private:
-  typedef typename std::vector<Edge> vge;
-
   int start_;
   std::vector<NodeData> D_;
   bool has_negative_cycle_;
@@ -251,7 +245,7 @@ private:
       if (!nd.found)
         continue;
 
-      for (typename vge::const_iterator i = G.adj(node).begin(); i != G.adj(node).end(); ++i) {
+      for (auto i = G.adj(node).begin(); i != G.adj(node).end(); ++i) {
         const Edge& e = *i;
 
         if (nd.cost + e.cost < D_[e.to].cost) {
@@ -269,7 +263,7 @@ private:
     if (!nd.found)
       return;
 
-    for (typename vge::const_iterator i = G.adj(node).begin(); i != G.adj(node).end(); ++i) {
+    for (auto i = G.adj(node).begin(); i != G.adj(node).end(); ++i) {
       const Edge& e = *i;
 
       if (!D_[e.to].found ||
@@ -308,7 +302,7 @@ int main() {
   assert(di.get_cost(3) == 12);
 
   std::list< Graph<int>::Edge > path = di.get_path(3);
-  std::list< Graph<int>::Edge >::const_iterator iter = path.begin();
+  auto iter = path.begin();
   assert(iter != path.end());
   assert((*iter).from == 0);
   assert((*iter).to == 1);

@@ -1,5 +1,5 @@
 CPP = g++
-CPPFLAGS = -g -Wall -std=c++03
+CPPFLAGS = -g -Wall -std=c++11
 
 INCFLAGS = 
 LDFLAGS = -Wl,-rpath,/usr/local/lib
