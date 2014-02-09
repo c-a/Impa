@@ -245,16 +245,19 @@ int main() {
   assert(G.adj(0).size() == 1);
   assert(G.adj(0)[0].from == 0);
   assert(G.adj(0)[0].to == 1);
+  assert(G.edges().size() == 1);
 
   G.add_edge(1, 2, 2);
   assert(G.adj(1).size() == 1);
   assert(G.adj(1)[0].from == 1);
   assert(G.adj(1)[0].to == 2);
+  assert(G.edges().size() == 2);
   
   G.add_edge(2, 3, 6);
   assert(G.adj(2).size() == 1);
   assert(G.adj(2)[0].from == 2);
   assert(G.adj(2)[0].to == 3);
+  assert(G.edges().size() == 2);
 
   Dijkstra<int> di(G, 0);
 

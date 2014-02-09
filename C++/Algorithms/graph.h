@@ -29,6 +29,15 @@ public:
     return adj_[n];
   }
 
+  std::vector<Edge> edges() const {
+  	std::vector<Edge> edges;
+  	auto back_insert_iter = std::back_insert_iterator< std::vector<Edge> >(edges);
+  	for (int n = 0; n < N(); n++) {
+  		std::copy(adj_[n].begin(), adj_[n].end(), back_insert_iter);
+  	}
+  	return edges;
+  }
+
   void clear() {
     for (int i = 0; i < N(); i++)
       adj_[i].clear();
