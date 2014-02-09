@@ -5,7 +5,7 @@ INCFLAGS =
 LDFLAGS = -Wl,-rpath,/usr/local/lib
 LIBS = 
 
-PROGRAMS = graph
+PROGRAMS = graph disjoint-set
 
 all: $(PROGRAMS)
 
