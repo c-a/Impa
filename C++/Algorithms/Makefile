@@ -1,4 +1,4 @@
-CPP = g++
+CXX = g++
 CPPFLAGS = -g -Wall -std=c++11
 
 INCFLAGS = 
@@ -9,11 +9,11 @@ PROGRAMS = graph disjoint-set
 
 all: $(PROGRAMS)
 
-PROBLEMS: $@.o
-	$(CC) -o $@ $^ $(LDFLAGS) $(LIBS)
+graph: graph.o
+	$(CXX) -o $@ $^ $(LDFLAGS) $(LIBS)
 
-%.o: %.cpp
-	$(CPP) -o $@ -c $(CPPFLAGS) $< $(INCFLAGS)
+%.o: %.cpp %.h
+	$(CXX) -o $@ -c $(CPPFLAGS) $< $(INCFLAGS)
 
 clean:
 	rm -f *.o $(PROGRAMS)
