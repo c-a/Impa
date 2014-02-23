@@ -1,11 +1,11 @@
 CXX = g++
-CPPFLAGS = -g -Wall -std=c++11
+CPPFLAGS = -g -Wall -Wextra -Wno-sign-compare -std=c++11
 
 INCFLAGS = 
 LDFLAGS = -Wl,-rpath,/usr/local/lib
 LIBS = 
 
-PROGRAMS = geometry graph disjoint-set
+PROGRAMS = bipartite geometry graph disjoint-set
 
 all: $(PROGRAMS)
 
