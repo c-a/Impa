@@ -5,12 +5,9 @@ INCFLAGS =
 LDFLAGS = -Wl,-rpath,/usr/local/lib
 LIBS = 
 
-PROGRAMS = graph disjoint-set
+PROGRAMS = geometry graph disjoint-set
 
 all: $(PROGRAMS)
-
-graph: graph.o
-	$(CXX) -o $@ $^ $(LDFLAGS) $(LIBS)
 
 %.o: %.cpp %.h
 	$(CXX) -o $@ -c $(CPPFLAGS) $< $(INCFLAGS)
