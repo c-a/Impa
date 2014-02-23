@@ -5,8 +5,7 @@ INCFLAGS =
 LDFLAGS = -Wl,-rpath,/usr/local/lib
 LIBS = 
 
-PROGRAMS = bipartite geometry graph disjoint-set
-
+PROGRAMS = bipartite disjoint-set geometry graph scc
 all: $(PROGRAMS)
 
 %.o: %.cpp %.h
