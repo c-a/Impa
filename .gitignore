@@ -1,4 +1,8 @@
 *~
+*.dSYM
+*.DS_Store
+*.swo
+*.swp
 
 *.metadata
 
