@@ -23,9 +23,10 @@ bool Correct(const std::string& line) {
 int main() {
   int n;
   std::cin >> n;
+  std::string line;
+  std::getline(std::cin, line);
   while (n-- > 0) {
-    std::string line;
-    std::cin >> line;
+    std::getline(std::cin, line);
     std::cout << (Correct(line) ? "Yes\n" : "No\n");
   }
   return 0;
