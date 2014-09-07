@@ -31,7 +31,7 @@ struct Vec {
   }
 };
 ftype angle(const Vec& a, const Vec& b) {
-  return acos(a.dot(b)) / sqrt(a.norm_sq()*b.norm_sq());
+  return acos(a.dot(b) / sqrt(a.norm_sq()*b.norm_sq()));
 }
 
 struct Point {
@@ -85,7 +85,7 @@ ftype distToLine(const Point& p, const Point& a, const Point& b, Point& c) {
 
 ftype pointLineDist(const Point& p, const Point& a, const Point& b) {
   Vec ab(a, b), ap(a, p);
-  return abs(ab.cross(ap)) / sqrt(ab.norm_sq ());
+  return abs(ab.cross(ap)) / sqrt(ab.norm_sq());
 }
 
 // returns the distance from p to the line segment ab defined by two points a and b. The closest point is stored in c.
